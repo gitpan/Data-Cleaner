@@ -1,0 +1,25 @@
+Build.PL
+Changes
+lib/Data/Cleaner.pm
+lib/Data/Cleaner/Boolean.pm
+lib/Data/Cleaner/Date.pm
+lib/Data/Cleaner/Datetime.pm
+lib/Data/Cleaner/Enum.pm
+lib/Data/Cleaner/Float.pm
+lib/Data/Cleaner/Hex.pm
+lib/Data/Cleaner/Int.pm
+lib/Data/Cleaner/Negint.pm
+lib/Data/Cleaner/Notype.pm
+lib/Data/Cleaner/Oct.pm
+lib/Data/Cleaner/Posint.pm
+lib/Data/Cleaner/Time.pm
+lib/Data/Cleaner/Timeticks.pm
+lib/Data/Cleaner/Utf8.pm
+MANIFEST			This list of files
+README
+t/basic.t
+t/types.t
+Makefile.PL
+LICENSE
+META.yml
+META.json

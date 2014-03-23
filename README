@@ -1,0 +1,9 @@
+Data::Cleaner is a lightweight, fast framework for writing dataset
+cleaners. It has less features than some modules which perform
+similar functions, but it's fast, which makes it more suitable for
+large datasets. It's also simple, making it easier to get results
+quickly.
+
+The Data::Cleaner itself is pure Perl, and so are the datatype
+submodules bundled with it, but some of the other available datatype
+modules may not be.

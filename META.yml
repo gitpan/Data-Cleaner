@@ -1,0 +1,78 @@
+---
+abstract: 'allows rule-based cleaning of datasets'
+author:
+  - 'Jason Turner <jason.turner@gridx.eu>'
+build_requires: {}
+configure_requires:
+  Module::Build: '0.42'
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4205, CPAN::Meta::Converter version 2.140640'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Data-Cleaner
+provides:
+  Data::Cleaner:
+    file: lib/Data/Cleaner.pm
+    version: v0.0.1
+  Data::Cleaner::Boolean:
+    file: lib/Data/Cleaner/Boolean.pm
+    version: v0.0.1
+  Data::Cleaner::Date:
+    file: lib/Data/Cleaner/Date.pm
+    version: v0.0.1
+  Data::Cleaner::Datetime:
+    file: lib/Data/Cleaner/Datetime.pm
+    version: v0.0.1
+  Data::Cleaner::Enum:
+    file: lib/Data/Cleaner/Enum.pm
+    version: v0.0.1
+  Data::Cleaner::Float:
+    file: lib/Data/Cleaner/Float.pm
+    version: v0.0.1
+  Data::Cleaner::Hex:
+    file: lib/Data/Cleaner/Hex.pm
+    version: v0.0.1
+  Data::Cleaner::Int:
+    file: lib/Data/Cleaner/Int.pm
+    version: v0.0.1
+  Data::Cleaner::Negint:
+    file: lib/Data/Cleaner/Negint.pm
+    version: v0.0.1
+  Data::Cleaner::Notype:
+    file: lib/Data/Cleaner/Notype.pm
+    version: v0.0.1
+  Data::Cleaner::Oct:
+    file: lib/Data/Cleaner/Oct.pm
+    version: v0.0.1
+  Data::Cleaner::Posint:
+    file: lib/Data/Cleaner/Posint.pm
+    version: v0.0.1
+  Data::Cleaner::Time:
+    file: lib/Data/Cleaner/Time.pm
+    version: v0.0.1
+  Data::Cleaner::Timeticks:
+    file: lib/Data/Cleaner/Timeticks.pm
+    version: v0.0.1
+  Data::Cleaner::Utf8:
+    file: lib/Data/Cleaner/Utf8.pm
+    version: v0.0.1
+recommends:
+  Algorithm::CheckDigits: '0'
+  Data::Validate: '0'
+  Data::Validate::Domain: '0'
+  Data::Validate::Email: '0'
+  Data::Validate::IP: '0'
+  Data::Validate::URI: '0'
+  Date::Format: '0'
+  Date::Parse: '0'
+requires:
+  Data::Types: '0'
+  Encode: '0'
+  Time::Interval: '0'
+  Time::Local: '0'
+  perl: '5.010000'
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.000_001

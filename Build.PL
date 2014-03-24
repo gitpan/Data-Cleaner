@@ -23,7 +23,7 @@ my $builder = Module::Build->new(
             Data::Validate::Domain => 0,
             Algorithm::CheckDigits => 0,
         },
-        dist_version       => '0.000_001',
+        dist_version       => '0.000_002',
         create_makefile_pl => 'traditional',
         create_license     => 1,
 );

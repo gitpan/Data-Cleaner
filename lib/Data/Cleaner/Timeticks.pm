@@ -6,7 +6,7 @@ use warnings;
 use Data::Types qw(is_float);
 use Time::Interval qw(parseInterval);
 
-our $VERSION = 0.0.1;
+our $VERSION = 0.0.2;
 our $DEFAULT = 0;
 
 sub _validate {
@@ -42,7 +42,11 @@ The B<fix> function returns the current default.
 
 The B<format> function formats the timeticks value as:
 
+=over 12
+
     0d 00:00:00.000
+
+=back
 
 =head1 DEFAULT VALUE (CONSTRUCTOR)
 

@@ -15,11 +15,11 @@ lib/Data/Cleaner/Posint.pm
 lib/Data/Cleaner/Time.pm
 lib/Data/Cleaner/Timeticks.pm
 lib/Data/Cleaner/Utf8.pm
+LICENSE
 MANIFEST			This list of files
 README
 t/basic.t
 t/types.t
 Makefile.PL
-LICENSE
 META.yml
 META.json

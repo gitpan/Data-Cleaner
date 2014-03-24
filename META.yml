@@ -15,7 +15,7 @@ name: Data-Cleaner
 provides:
   Data::Cleaner:
     file: lib/Data/Cleaner.pm
-    version: v0.0.1
+    version: v0.0.2
   Data::Cleaner::Boolean:
     file: lib/Data/Cleaner/Boolean.pm
     version: v0.0.1
@@ -27,7 +27,7 @@ provides:
     version: v0.0.1
   Data::Cleaner::Enum:
     file: lib/Data/Cleaner/Enum.pm
-    version: v0.0.1
+    version: v0.0.2
   Data::Cleaner::Float:
     file: lib/Data/Cleaner/Float.pm
     version: v0.0.1
@@ -54,7 +54,7 @@ provides:
     version: v0.0.1
   Data::Cleaner::Timeticks:
     file: lib/Data/Cleaner/Timeticks.pm
-    version: v0.0.1
+    version: v0.0.2
   Data::Cleaner::Utf8:
     file: lib/Data/Cleaner/Utf8.pm
     version: v0.0.1
@@ -75,4 +75,4 @@ requires:
   perl: '5.010000'
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.000_001
+version: 0.000_002

@@ -10,7 +10,7 @@ use constant DATE_FORMAT      => '%d-%m-%Y';
 use constant TIME_FORMAT      => '%X %z';
 use constant DATE_TIME_FORMAT => DATE_FORMAT.' '.TIME_FORMAT;
 
-our $VERSION = 0.0.1;
+our $VERSION = 0.0.2;
 
 #
 # Main methods
@@ -384,23 +384,19 @@ Data::Cleaner - allows rule-based cleaning of datasets
 
 =head1 SYNOPSIS
 
-=over 6
+    use Data::Cleaner;
 
-use Data::Cleaner;
-
-my $cleaner = Data::Cleaner->new(type => 'datatype');
+    my $cleaner = Data::Cleaner->new(type => 'datatype');
     
-my $dubious = 'Some input data';
+    my $dubious = 'Some input data';
     
-unless ($cleaner->validate($dubious)) {
+    unless ($cleaner->validate($dubious)) {
     
-   $cleaner->fix;
+       $cleaner->fix;
         
-}
+    }
     
-my $fragrant = $cleaner->format;
-
-=back
+    my $fragrant = $cleaner->format;
 
 =head1 DESCRIPTION
 
@@ -424,36 +420,28 @@ The datatype is the only property required at creation, although
 others can be specified at the same time, rather than individually
 using set functions:
 
-=over 6
-
-my @enum_options = qw(red orange yellow green blue brown black);
+    my @enum_options = qw(red orange yellow green blue brown black);
    
-my $cleaner = Data::Cleaner->new(
-                    type        => 'enum',
-                    default     => 'purple'
-                    enumOptions => \@enum_options);
+    my $cleaner = Data::Cleaner->new(
+                        type        => 'enum',
+                        default     => 'purple'
+                        enumOptions => \@enum_options);
 
-=back
+    # is the same as:
 
-is the same as:
+    my $cleaner = Data::Cleaner->new(type => 'enum');
 
-=over 6
+    my @enum_options = qw(red orange yellow green blue brown black);
 
-my $cleaner = Data::Cleaner->new(type => 'enum');
+    $cleaner->set_default('purple');
 
-my @enum_options = qw(red orange yellow green blue brown black);
-
-$cleaner->set_default('purple');
-
-$cleaner->set_enum_options(\@enum_options);
-
-=back
+    $cleaner->set_enum_options(\@enum_options);
 
 Data::Cleaner objects are differentiated by the datatype they
 validate. But each supported datatype provides the same three
 principal functions:
 
-=over 12
+=over 4
 
 =item B<validate>
 
@@ -509,12 +497,8 @@ The validation stage can also be bypassed altogether. In order to use
 Data::Cleaner only to apply formatting (or to attempt to fix an item
 of data), the data item can be loaded directly as raw data:
 
-=over 6
+    $cleaner->load('Some input data');
 
-$cleaner->load('Some input data');
-
-=back
-    
 Careful how you use this though - since they're really designed to
 process the output of the validate method (and also to keep process
 times down), fix and format don't validate their inputs. In some
@@ -540,39 +524,38 @@ time.
 
 The current complete list of datatypes is:
 
-=head3 Basic_datatypes_(installed_together_with_Data::Cleaner):
+=head3 Basic datatypes (installed together with Data::Cleaner):
 
-'int', 'posint', 'negint', 'float', 'boolean', 'oct', 'hex', 'utf8',
-'enum', 'notype'
+int, posint, negint, float, boolean, oct, hex, utf8, enum, notype
 
-=head3 Dates_and_times_(installed_together_with_Data::Cleaner):
+=head3 Dates and times (installed together with Data::Cleaner):
 
-'datetime', 'date', 'time', 'timeticks'
+datetime, date, time, timeticks
 
-=head3 Networking_and_Communications:
+=head3 Networking and Communications:
 
-'ipv4', 'ipv6', 'macaddr', 'hostname', 'msisdn', 'uri'
+ipv4, ipv6, macaddr, hostname, msisdn, uri
 
 =head3 Computing:
 
-'email', 'hashtag', 'twitterid'
+email, hashtag, twitterid
 
 =head3 Scientific:
 
-'dna', 'prime'
+dna, prime
 
 =head3 Geopositioning:
 
-'longitude', 'latitude'
+longitude, latitude
 
 =head3 Financial:
 
-'currency', 'iban'
+currency, iban
 
 =head3 Barcodes:
 
-'code11', 'code39', 'code39ext', 'code93', 'code128', 'codabar',
-'ean8', 'ean13', 'itf14', 'upca', 'upce', 'isbn', 'issn'
+code11, code39, code39ext, code93, code128, codabar, ean8, ean13,
+itf14, upca, upce, isbn, issn
 
 =head1 FUNCTIONS
 
@@ -581,22 +564,14 @@ The current complete list of datatypes is:
 Creates a new object. The only argument required is the datatype. For
 example:
 
-=over 6
-
-my $cleaner = Data::Cleaner->new(type => 'boolean');
-
-=back
+    my $cleaner = Data::Cleaner->new(type => 'boolean');
 
 =head2 reset
 
 Reliably resets the object for reuse. In particular, raw data and
 last test result are set to undef.
 
-=over 6
-
-$cleaner->reset;
-
-=back
+    $cleaner->reset;
 
 This function is performed every time the B<validate> function
 processes data passed as an argument (rather than internal raw data),
@@ -608,22 +583,14 @@ Allows the loading of data as raw data bypassing the validate
 function. Use caution with this - the fix and format functions don't
 validate their inputs (that's what validate is for).
 
-=over 6
+    $cleaner->load('Yet more data');
 
-$cleaner->load('Yet more data');
-
-=back
-   
 =head2 validate
 
 Checks the compliance of the data element with the requirements of
 the datatype (defined in the submodule).
 
-=over 6
-
-my $result = $cleaner->validate('is this a hostname?');
-
-=back
+    my $result = $cleaner->validate('is this a hostname?');
 
 Returns 1 for pass; 0 for fail. The data is saved internally as raw
 data, ie. in its current state (after any preprocessing which might
@@ -635,11 +602,7 @@ saved internally.
 
 The internal 'raw' data can be retrieved using B<get_raw>:
 
-=over 6
-
-my $preprocessed = $cleaner->get_raw;
-
-=back
+    my $preprocessed = $cleaner->get_raw;
 
 If validate is called without arguments, the validation will be
 applied to the 'raw' internal data will be used (if defined), which
@@ -651,11 +614,7 @@ raw data is undefined, undef will be returned.
 Applies formatting to the object's internal 'raw' copy of the data
 and returns the result.
 
-=over 6
-
-$result = $cleaner->format;
-
-=back
+    $result = $cleaner->format;
 
 The formatting used depends on the datatype - in many cases the
 format method leaves the value unaltered. See the submodule
@@ -666,11 +625,7 @@ documentation for more information.
 Attempts to fix the internal 'raw' copy of the data after failed
 validation.
 
-=over 6
-
-$cleaner->fix;
-
-=back
+    $cleaner->fix;
 
 How successful this turns out to be depends on the data itself, the
 datatype (ie the datatype submodule), and the reason the validation
@@ -682,11 +637,7 @@ will be left unaltered.
 
 Returns the result of the last validation: 1 for pass, 0 for fail.
 
-=over 6
-
-$result = $cleaner->is_valid;
-
-=back
+    $result = $cleaner->is_valid;
 
 =head2 add_test
 
@@ -702,17 +653,13 @@ terms of a) whether it is an integer or not, and b)whether it is
 positive or not. In order to validate it in terms of range - in this
 case it should be between 0 and 1000, a custom test must be added:
 
-=over 6
+    my $new_test = sub {
 
-my $new_test = sub {
+        $_[1] <= 1000 ? return $_[1] : return undef;
 
-    $_[1] <= 1000 ? return $_[1] : return undef;
-
-}
+    }
    
-$cleaner->add_test(\$new_test);
-
-=back
+    $cleaner->add_test(\$new_test);
 
 Full details of the inputs and outputs of the B<add_test> function
 (and also the B<set_format> and B<set_fix> functions), and given in
@@ -732,17 +679,13 @@ follows the input/output standards of a submodule B<format> function
 To specify that the formatted output should be accurate to three
 decimal places, the following commands can be used:
 
-=over 6
+    my $new_format_function = sub {
 
-my $new_format_function = sub {
+        return sprintf '%.3f', $_[1];
 
-    return sprintf '%.3f', $_[1];
+    }
 
-}
-
-$cleaner->set_format(\$new_format_function);
-
-=back
+    $cleaner->set_format(\$new_format_function);
 
 =head2 set_fix
 
@@ -753,18 +696,14 @@ default. Perhaps, in place of '00.0' (the standard default for
 the currency datatype), the string '------.--' is required. This
 can be achieved using the following commands:
 
-=over 6
+    my $new_fix_function = sub {
 
-my $new_fix_function = sub {
+        return '------.--';
 
-    return '------.--';
-
-}
+    }
    
-$cleaner->set_fix(\$new_fix_function);
+    $cleaner->set_fix(\$new_fix_function);
 
-=back
-   
 As with B<add_test> and B<set_format>, the subroutine should
 follow the requirements in Writing Datatype Submodules section
 below.
@@ -774,11 +713,7 @@ below.
 Returns the raw data stored internally for fixing (in the case of
 non-compliant data) or formatting.
 
-=over 6
-
-my $data = $cleaner->get_raw;
-
-=back
+    my $data = $cleaner->get_raw;
    
 Typically the raw data is first stored as a result of a
 validation (irrespective of the result). The fix method operates
@@ -790,44 +725,28 @@ its output. The format method uses the raw data as its input.
 Returns the datatype specified when the Data::Cleaner object was
 created.
 
-=over 6
-
-my $datatype = $cleaner->get_type;
-
-=back
+    my $datatype = $cleaner->get_type;
 
 =head2 get_default
 
 Returns the default value for the datatype (often used by the
 B<fix> function).
 
-=over 6
-
-my $default = $cleaner->get_default;
-
-=back
+    my $default = $cleaner->get_default;
 
 =head2 get_encoding
 
 Gets the current encoding used to process text strings in the utf8
 datatype submodule.
 
-=over 6
-
-my $encoding = $cleaner->get_encoding;
-
-=back
+    my $encoding = $cleaner->get_encoding;
 
 =head2 get_timezone
 
 Returns the timezone setting, used for formatting dates and times.
 
-=over 6
+    my $timezone = $cleaner->get_timezone;
 
-my $timezone = $cleaner->get_timezone;
-
-=back
-   
 A default timezone is added when the object is created. It is
 calculated from the time - localtime difference and stored in
 +/-hhmm format. Abbreviated timezone representations such as CET
@@ -838,11 +757,7 @@ can also be used.
 The datetime submodule uses Date::Format, which uses '%' +
 character combinations to define the format of datetimes as text.
 
-=over 6
-
-my $time_format = $cleaner->get_datetime_format;
-
-=back
+    my $time_format = $cleaner->get_datetime_format;
 
 The get_datetime_format method returns the '%' + character
 combination which Data::Cleaner will pass to Date::Format.
@@ -866,11 +781,7 @@ the input data. By default this array is empty.
 Overwrites the datatype default added when the object was
 created.
 
-=over 6
-
-$cleaner->set_default('Something new');
-
-=back
+    $cleaner->set_default('Something new');
 
 =head2 set_encoding
 
@@ -878,21 +789,13 @@ Sets the encoding used to process text strings in the utf8
 datatype submodule. Should be set to a Encode-compatible
 value.
 
-=over 6
-
-$cleaner->set_encoding('iso-8859-1');
-
-=back
+    $cleaner->set_encoding('iso-8859-1');
 
 =head2 set_timezone
 
 The default timezone can be overwritten using
 
-=over 6
-
-$cleaner->set_timezone('value');
-
-=back
+    $cleaner->set_timezone('value');
 
 The format can be +/-hhmm or a timezone abbreviation such as
 CET.
@@ -903,11 +806,7 @@ The datetime submodule uses Date::Format, which uses '%' +
 character combinations to define the format of datetimes as
 text.
 
-=over 6
-
-$cleaner->set_datetime_format('%d-%m-%Y %X %z');
-
-=back
+    $cleaner->set_datetime_format('%d-%m-%Y %X %z');
 
 The set_datetime_format method updates the '%' + character
 combination which Data::Cleaner will pass to Date::Format.
@@ -930,24 +829,16 @@ code should be added either as part of the constructor
 
 =head3 Example 1:
 
-=over 6
+    my @enum_options = qw(black white red green);
 
-my @enum_options = qw(black white red green);
-
-my $cleaner = Data::Cleaner->new(
-                        type        => 'enum',
-                        enumOptions => \@enum_options);
-
-=back
+    my $cleaner = Data::Cleaner->new(
+                            type        => 'enum',
+                            enumOptions => \@enum_options);
 
 =head3 Example 2:
 
-=over 6
-
-my @enum_options = qw(black white red green);
-$cleaner->set_enum_options(\@enum_options);
-
-=back
+    my @enum_options = qw(black white red green);
+    $cleaner->set_enum_options(\@enum_options);
 
 The enum test will fail if these options have not been set,
 since no defaults are configured at object creation.
@@ -971,7 +862,7 @@ The object instance, conventionally referred to as $self.
 Often not used in practice, but required if it becomes
 necessary to retrieve instance property values. For example:
 
-my $default = $_[0]->get_default
+    my $default = $_[0]->get_default
 
 =item $_[1]
 
@@ -979,24 +870,16 @@ The value being passed to the function
 
 =back
 
-A neat way to do this might be:
+A neater way to do this might be:
 
-=over 12
-
-my ($self, $input) = @_;
-
-=back
+    my ($self, $input) = @_;
 
 =head2 Outputs:
 
 There is only ever one scalar output, depending on the
 function. End with:
 
-=over 12
-
-return $output;
-
-=back
+    return $output;
 
 =head2 Functions:
 

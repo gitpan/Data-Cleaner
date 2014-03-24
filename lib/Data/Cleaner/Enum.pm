@@ -3,7 +3,7 @@ package Data::Cleaner::Enum;
 use strict;
 use warnings;
 
-our $VERSION = 0.0.1;
+our $VERSION = 0.0.2;
 our $DEFAULT = '';
 
 sub _validate {
@@ -37,8 +37,8 @@ Data::Cleaner::Enum
 =head1 DESCRIPTION
 
 Checks that a value is present on a list. The list
-is managed using the b<get_enum_options> and
-b<set_enum_options> functions.
+is managed using the B<get_enum_options> and
+B<set_enum_options> functions.
 
 The B<fix> function returns the current default.
 
